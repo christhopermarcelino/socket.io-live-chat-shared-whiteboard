@@ -71,6 +71,8 @@ io.on('connection', (socket) => {
 
         socket.join(data.room);
 
+        io.in(data.room).emit('update-users', userList);
+
         socket.emit('join-room', {
           success: true,
           message: 'Joining room successfully',
