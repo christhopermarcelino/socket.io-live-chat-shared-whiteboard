@@ -64,6 +64,10 @@ io.on('connection', (socket) => {
         socket.emit('join-room', {
           success: true,
           message: 'Joining room successfully',
+          data: {
+            isPublic: data.isPublic,
+            isOpen: data.isOpen,
+          },
         });
       }
     } else {
