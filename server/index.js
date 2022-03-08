@@ -61,7 +61,16 @@ io.on('connection', (socket) => {
           message: `User named ${data.username} has already joined the room`,
         });
       } else {
+        const userData = {
+          id: data.id,
+          username: data.username,
+          room: data.room,
+          isAdmin: false,
+        };
+        userList.push(userData);
+
         socket.join(data.room);
+
         socket.emit('join-room', {
           success: true,
           message: 'Joining room successfully',
