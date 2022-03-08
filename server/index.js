@@ -27,7 +27,12 @@ io.on('connection', (socket) => {
         admin: data.id,
       };
       roomList.push(roomData);
-      userData = { id: data.id, username: data.username, isAdmin: true };
+      userData = {
+        id: data.id,
+        username: data.username,
+        isAdmin: true,
+        room: data.room,
+      };
 
       socket.join(data.room);
       socket.emit('create-room', {
@@ -46,11 +51,21 @@ io.on('connection', (socket) => {
     // data -> username, room
     const findRoom = roomList.find((r) => r.room === data.room);
     if (findRoom) {
-      socket.join(data.room);
-      socket.emit('join-room', {
-        success: true,
-        message: 'Joining room successfully',
-      });
+      const isUserAlreadyJoined = userList.find(
+        (u) => u.room === data.room && u.username === data.username
+      );
+      if (isUserAlreadyJoined) {
+        socket.emit('join-room', {
+          success: false,
+          message: `User named ${data.username} has already joined the room`,
+        });
+      } else {
+        socket.join(data.room);
+        socket.emit('join-room', {
+          success: true,
+          message: 'Joining room successfully',
+        });
+      }
     } else {
       socket.emit('join-room', {
         success: false,
