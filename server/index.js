@@ -90,6 +90,16 @@ io.on('connection', (socket) => {
     }
   });
 
+  socket.on('send-message', (data) => {
+    // data = {message, author, time, room}
+    messageList.push(data);
+    socket.emit('send-message', {
+      success: true,
+      message: 'Chat message sent successfully',
+      data: messageList,
+    });
+  });
+
   io.on('disconnect', (reason) =>
     console.log(`${reason}: User ${socket.id} disconnected from server`)
   );
