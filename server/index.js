@@ -71,7 +71,8 @@ io.on('connection', (socket) => {
 
         socket.join(data.room);
 
-        io.in(data.room).emit('update-users', userList);
+        const activeUser = userList.filter((u) => u.room === data.room);
+        io.in(data.room).emit('update-users', activeUser);
 
         socket.emit('join-room', {
           success: true,
