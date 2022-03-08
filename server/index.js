@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
       });
     } catch (err) {
       socket.emit('create-room', {
-        success: true,
+        success: false,
         message: err.message || 'Error occured',
       });
     }
