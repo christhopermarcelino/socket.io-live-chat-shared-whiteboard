@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const { createServer } = require('http');
+const { SocketAddress } = require('net');
 const { Server } = require('socket.io');
 
 const PORT = process.env.PORT || 3001;
@@ -37,6 +38,23 @@ io.on('connection', (socket) => {
       socket.emit('create-room', {
         success: true,
         message: err.message || 'Error occured',
+      });
+    }
+  });
+
+  socket.on('join-room', (data) => {
+    // data -> username, room
+    const findRoom = roomList.find((r) => r.room === data.room);
+    if (findRoom) {
+      socket.join(data.room);
+      socket.emit('join-room', {
+        success: true,
+        message: 'Joining room successfully',
+      });
+    } else {
+      socket.emit('join-room', {
+        success: false,
+        message: 'Room does not exist',
       });
     }
   });
