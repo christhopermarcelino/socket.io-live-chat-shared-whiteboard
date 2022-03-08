@@ -27,12 +27,13 @@ io.on('connection', (socket) => {
         admin: data.id,
       };
       roomList.push(roomData);
-      userData = {
+      const userData = {
         id: data.id,
         username: data.username,
         isAdmin: true,
         room: data.room,
       };
+      userList.push(userData);
 
       socket.join(data.room);
       socket.emit('create-room', {
