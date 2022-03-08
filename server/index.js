@@ -4,6 +4,7 @@ const { createServer } = require('http');
 const { Server } = require('socket.io');
 
 const PORT = process.env.PORT || 3001;
+const { userList, messageList, roomList } = require('./context/data');
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
