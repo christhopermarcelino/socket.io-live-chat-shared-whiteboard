@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/create-room.css" />
     <title>ngobrol.in | Create room</title>
   </head>
   <body>
@@ -21,17 +22,21 @@
 
       <main class="join-main">
         <form action="chat.html">
-          <div class="form-control">
+          <div class="form-control options">
+            <span>Public</span>
             <label class="switch">
-              <input type="checkbox" checked />
+              <input type="checkbox" />
               <span class="slider round"></span>
             </label>
+            <span>Private</span>
           </div>
-          <div class="form-control">
+          <div class="form-control options">
+            <span>Opened</span>
             <label class="switch">
-              <input type="checkbox" checked />
+              <input type="checkbox" />
               <span class="slider round"></span>
             </label>
+            <span>Restricted</span>
           </div>
           <div class="form-control">
             <label for="username">Username</label>
