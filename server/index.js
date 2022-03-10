@@ -20,6 +20,17 @@ io.on('connection', (socket) => {
   socket.on('create-room', (data) => {
     // data: {id, username, room, isPublic, isOpen}
     try {
+      // check if room already exists
+      const isRoomAlreadyExists = roomList.find((r) => r.room === data.room);
+      if (isRoomAlreadyExists) throw new Error('Room already exists');
+
+      // check if username already exists
+      // current state: not allow same username in different room
+      const isUsernameAlreadyExists = userList.find(
+        (u) => u.username === data.username
+      );
+      if (isUsernameAlreadyExists) throw new Error('Username already exists');
+
       roomData = {
         room: data.room,
         isPublic: data.isPublic,
