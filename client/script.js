@@ -32,4 +32,8 @@ socket.on('create-room', (data) => {
     ? pResponse.classList.add('bg-success')
     : pResponse.classList.add('bg-error');
   document.body.prepend(pResponse);
+
+  if (data.success) {
+    window.location.href = 'http://127.0.0.1:5500/client/chat.html';
+  }
 });
