@@ -21,11 +21,11 @@
       </header>
 
       <main class="join-main">
-        <form action="chat.html">
+        <form id="create-room-form">
           <div class="form-control options">
             <span>Public</span>
             <label class="switch">
-              <input type="checkbox" />
+              <input type="checkbox" id="isPublic-checkbox" />
               <span class="slider round"></span>
             </label>
             <span>Private</span>
@@ -33,7 +33,7 @@
           <div class="form-control options">
             <span>Opened</span>
             <label class="switch">
-              <input type="checkbox" />
+              <input type="checkbox" id="isOpen-checkbox" />
               <span class="slider round"></span>
             </label>
             <span>Restricted</span>
@@ -45,6 +45,16 @@
               name="username"
               id="username"
               placeholder="Enter username..."
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="username">Room</label>
+            <input
+              type="text"
+              name="room"
+              id="room"
+              placeholder="Enter room name..."
               required
             />
           </div>
