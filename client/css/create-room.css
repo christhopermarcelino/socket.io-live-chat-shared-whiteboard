@@ -9,10 +9,3 @@ div.form-control.options span:not(.slider) {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-
-p.response-text {
-  margin: auto;
-  width: fit-content;
-  padding: 0.7rem;
-  border-radius: 1rem;
-}

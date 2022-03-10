@@ -328,3 +328,10 @@ i.fas.fa fa-coffee {
     display: none;
   }
 }
+
+p.response-text {
+  margin: auto;
+  width: fit-content;
+  padding: 0.7rem;
+  border-radius: 1rem;
+}
