@@ -16,27 +16,20 @@
     <link href="./style/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="join-container">
-      <header class="join-header">
-        <h1><i class="fa fa-coffee"></i> ngobrol.in</h1>
-      </header>
-
-      <main class="join-main">
-        <div class="entry-room">
-          <div class="btn-entry-l">
-            <button type="" class="btn">
-              <a href="/create-room" class="btn">Create room</a>
-            </button>
-          </div>
-          <div class="btn-entry-r">
-            <button type="" class="btn">
-              <a href="/join-room" class="btn">Join room</a>
-            </button>
-          </div>
-        </div>
-      </main>
-    </div>
-
+    <main
+      class="min-h-screen bg-gray-800 flex justify-center items-center space-x-10"
+    >
+      <a
+        href="/join-room"
+        class="px-8 font-bold bg-gray-100 text-3xl py-6 rounded-md focus:bg-white hover:bg-gray-300 flex justify-center items-center"
+        >Join room</a
+      >
+      <a
+        href="/create-room"
+        class="px-8 font-bold bg-gray-100 text-3xl py-6 rounded-md focus:bg-white hover:bg-gray-300 flex justify-center items-center"
+        >Create room</a
+      >
+    </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./script.js"></script>
   </body>
