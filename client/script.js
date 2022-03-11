@@ -26,7 +26,6 @@ createRoomForm &&
   });
 
 socket.on('create-room', (data) => {
-  console.log(data);
   const pResponse = document.createElement('p');
 
   pResponse.innerText = data.message;
@@ -37,7 +36,7 @@ socket.on('create-room', (data) => {
   document.body.prepend(pResponse);
 
   if (data.success) {
-    window.location.href = 'http://127.0.0.1:5500/client/chat.html';
+    window.location.href = 'http://localhost:3001/room';
   }
 });
 
@@ -67,6 +66,6 @@ socket.on('join-room', (data) => {
   document.body.prepend(pResponse);
 
   if (data.success) {
-    window.location.href = 'http://127.0.0.1:5500/client/chat.html';
+    window.location.href = 'http://127.0.0.1:5500/room';
   }
 });

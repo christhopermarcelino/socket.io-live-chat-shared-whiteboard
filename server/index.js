@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const { createServer } = require('http');
+const path = require('path');
 const { Server } = require('socket.io');
 
 const PORT = process.env.PORT || 3001;
@@ -11,6 +12,22 @@ const io = new Server(httpServer, {
   cors: {
     origin: '*',
   },
+});
+
+// route
+app.use(express.static(path.join(__dirname, '..', '/client')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client/index.html'));
+});
+app.get('/create-room', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client/create-room.html'));
+});
+app.get('/join-room', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client/join-room.html'));
+});
+app.get('/room', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client/chat.html'));
 });
 
 io.on('connection', (socket) => {
