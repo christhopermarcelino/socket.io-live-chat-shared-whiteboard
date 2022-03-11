@@ -10,55 +10,65 @@
     <link href="./style/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="join-container">
-      <header class="join-header">
-        <h1><i class="fa fa-coffee"></i> ngobrol.in</h1>
-      </header>
-
-      <main class="join-main">
-        <form id="create-room-form">
-          <div class="form-control options">
-            <span>Public</span>
-            <label class="switch">
-              <input type="checkbox" id="isPublic-checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span>Private</span>
-          </div>
-          <div class="form-control options">
-            <span>Opened</span>
-            <label class="switch">
-              <input type="checkbox" id="isOpen-checkbox" />
-              <span class="slider round"></span>
-            </label>
-            <span>Restricted</span>
-          </div>
-          <div class="form-control">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Enter username..."
-              required
-            />
-          </div>
-          <div class="form-control">
-            <label for="username">Room</label>
-            <input
-              type="text"
-              name="room"
-              id="room"
-              placeholder="Enter room name..."
-              required
-            />
-          </div>
-          <div class="flex">
-            <button type="submit" class="btn">Create Room</button>
-          </div>
-        </form>
-      </main>
-    </div>
+    <main class="min-h-screen bg-gray-800">
+      <form
+        id="create-room-form"
+        class="flex flex-col justify-center items-center space-y-10 min-h-screen"
+      >
+        <div>
+          <label for="isPublic" class="flex items-center cursor-pointer">
+            <div class="mr-3 text-gray-200 font-medium">Public</div>
+            <div class="relative">
+              <input
+                type="checkbox"
+                id="isPublic"
+                class="sr-only checkbox-input"
+              />
+              <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+              <div
+                class="dot absolute left-1 top-1 bg-indigo-400 w-6 h-6 rounded-full transition"
+              ></div>
+            </div>
+            <div class="ml-3 text-gray-200 font-medium">Private</div>
+          </label>
+        </div>
+        <div>
+          <label for="isOpen" class="flex items-center cursor-pointer">
+            <div class="mr-3 text-gray-200 font-medium">Opened</div>
+            <div class="relative">
+              <input
+                type="checkbox"
+                id="isOpen"
+                class="sr-only checkbox-input"
+              />
+              <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+              <div
+                class="dot absolute left-1 top-1 bg-indigo-400 w-6 h-6 rounded-full transition"
+              ></div>
+            </div>
+            <div class="ml-3 text-gray-200 font-medium">Restricted</div>
+          </label>
+        </div>
+        <input
+          id="username"
+          type="text"
+          placeholder="Enter username..."
+          class="px-6 py-4 rounded-md font-semibold text-2xl"
+        />
+        <input
+          id="room"
+          type="text"
+          placeholder="Enter room..."
+          class="px-6 py-4 rounded-md font-semibold text-2xl"
+        />
+        <button
+          type="submit"
+          class="hover:bg-gray-400 px-4 font-semibold bg-gray-200 focus:bg-gray-300 rounded-md text-xl py-3"
+        >
+          Create room
+        </button>
+      </form>
+    </main>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="./script.js"></script>
