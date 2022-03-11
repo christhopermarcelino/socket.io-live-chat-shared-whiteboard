@@ -12,34 +12,59 @@
     <link href="./style/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="chat-container">
-      <header class="chat-header">
-        <h1><i class="fa fa-coffee"></i> WebCage</h1>
-        <a href="index.html" class="btn" id="leave-btn">Leave Room</a>
-      </header>
-
-      <main class="chat-main">
-        <div class="chat-sidebar">
-          <h2 id="room-name"></h2>
-          <h3><i class="fas fa-user"></i> Online</h3>
-          <ul id="users"></ul>
+    <main class="min-h-screen flex flex-col bg-gray-800">
+      <div class="flex justify-between space-x-10 px-16 py-6">
+        <h1 class="font-semibold text-white">Live chat & whiteboard app</h1>
+        <div>
+          <button class="px-6 py-3 rounded-md bg-gray-300 font-medium">
+            Join another room
+          </button>
+          <button class="px-6 py-3 rounded-md bg-gray-300 font-medium">
+            Log out
+          </button>
         </div>
-        <div class="chat-messages"></div>
-      </main>
-
-      <div class="chat-form-container">
-        <form id="chat-form">
-          <input
-            id="msg"
-            type="text"
-            placeholder="Type a Message"
-            required
-            autocomplete="off"
-          />
-          <button class="btn-plane"><i class="fas fa-paper-plane"></i></button>
-        </form>
       </div>
-    </div>
+      <div class="flex flex-grow">
+        <!-- left side -->
+        <div class="flex-[2_2_0%] p-6">
+          <!-- canvas -->
+          <canvas id="canvas" class="w-full h-full bg-white rounded-lg">
+          </canvas>
+        </div>
+        <!-- right side -->
+        <div class="flex-[1_1_0%] p-6 space-y-10">
+          <!-- activities -->
+          <div class="bg-white rounded-lg overflow-hidden">
+            <div class="bg-gray-600 px-4 py-2">
+              <h4 class="text-center text-white">Activities</h4>
+            </div>
+            <div class="h-64"></div>
+          </div>
+          <!-- chat room -->
+          <div class="bg-white rounded-lg overflow-hidden">
+            <div class="bg-gray-600 px-4 py-2">
+              <h4 class="text-center text-white">Chat room</h4>
+            </div>
+            <div class="h-64"></div>
+            <div>
+              <form class="flex">
+                <input
+                  type="text"
+                  placeholder="Enter your message..."
+                  class="flex-[3_3_0%] px-3 py-3 border-t"
+                />
+                <button
+                  type="submit"
+                  class="flex-[1_1_0%] bg-indigo-500 text-white font-semibold hover:bg-indigo-700 focus:bg-indigo-400"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="./main.js"></script>
