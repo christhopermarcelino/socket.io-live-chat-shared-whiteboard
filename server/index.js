@@ -26,9 +26,6 @@ app.get('/create-room', (req, res) => {
 app.get('/join-room', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'client/join-room.html'));
 });
-app.get('/room', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client/room.html'));
-});
 
 io.on('connection', (socket) => {
   console.log(`User ${socket.id} connected to server`);

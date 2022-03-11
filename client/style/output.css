@@ -622,6 +622,10 @@ body, .p {
   display: inline-flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-6 {
   height: 1.5rem;
 }
