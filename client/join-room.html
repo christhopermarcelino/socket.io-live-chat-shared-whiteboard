@@ -10,39 +10,31 @@
     <link href="./style/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="join-container">
-      <header class="join-header">
-        <h1><i class="fa fa-coffee"></i> ngobrol.in</h1>
-      </header>
-
-      <main class="join-main">
-        <form id="join-room-form">
-          <div class="form-control">
-            <label for="room-cd">Room Code</label>
-            <input
-              type="text"
-              name="room"
-              id="room"
-              placeholder="Enter Room code..."
-              required
-            />
-          </div>
-          <div class="form-control">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Enter username..."
-              required
-            />
-          </div>
-          <div class="flex">
-            <button type="submit" class="btn">Join Room</button>
-          </div>
-        </form>
-      </main>
-    </div>
+    <main class="min-h-screen bg-gray-800">
+      <form
+        id="join-room-form"
+        class="flex flex-col justify-center items-center space-y-10 min-h-screen"
+      >
+        <input
+          id="room"
+          type="text"
+          placeholder="Enter room code..."
+          class="px-6 py-4 rounded-md font-semibold text-2xl"
+        />
+        <input
+          id="username"
+          type="text"
+          placeholder="Enter username..."
+          class="px-6 py-4 rounded-md font-semibold text-2xl"
+        />
+        <button
+          type="submit"
+          class="hover:bg-gray-400 px-4 font-semibold bg-gray-200 focus:bg-gray-300 rounded-md text-xl py-3"
+        >
+          Join room
+        </button>
+      </form>
+    </main>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="./script.js"></script>

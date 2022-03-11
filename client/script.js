@@ -33,7 +33,7 @@ socket.on('create-room', (data) => {
   data.success
     ? pResponse.classList.add('bg-success')
     : pResponse.classList.add('bg-error');
-  document.body.prepend(pResponse);
+  document.body.getElementById('').prepend(pResponse);
 
   if (data.success) {
     window.location.href = 'http://localhost:3001/room';
@@ -56,16 +56,22 @@ joinRoomForm &&
 
 socket.on('join-room', (data) => {
   console.log(data);
-  const pResponse = document.createElement('p');
+  const pResponse = document.createElement('span');
 
   pResponse.innerText = data.message;
-  pResponse.classList.add('response-text');
-  data.success
-    ? pResponse.classList.add('bg-success')
-    : pResponse.classList.add('bg-error');
-  document.body.prepend(pResponse);
+  pResponse.classList.add(
+    'text-white',
+    'font-semibold',
+    'rounded-md',
+    'px-4',
+    'py-1',
+    'bg-red-500'
+  );
+
+  !data.success && pResponse.classList.add('bg-red-500');
+  joinRoomForm.prepend(pResponse);
 
   if (data.success) {
-    window.location.href = 'http://127.0.0.1:5500/room';
+    window.location.href = 'http://localhost:3001/';
   }
 });
