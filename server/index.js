@@ -53,6 +53,7 @@ io.on('connection', (socket) => {
         isOpen: data.isOpen,
         admin: data.id,
       };
+
       roomList.push(roomData);
       const userData = {
         id: data.id,
