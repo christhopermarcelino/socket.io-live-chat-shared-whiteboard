@@ -87,6 +87,6 @@ socket.on('join-room', (data) => {
   joinRoomForm.prepend(pResponse);
 
   if (data.success) {
-    window.location.href = 'http://localhost:3001/chat';
+    window.location.href = 'http://localhost:3001/room';
   }
 });
