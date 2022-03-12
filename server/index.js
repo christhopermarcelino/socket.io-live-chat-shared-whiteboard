@@ -119,10 +119,10 @@ io.on('connection', (socket) => {
   socket.on('send-message', (data) => {
     // data = {message, author, time, room}
     messageList.push(data);
-    socket.emit('send-message', {
+    io.in(data.room).emit('send-message', {
       success: true,
       message: 'Chat message sent successfully',
-      data: messageList,
+      messageList: messageList,
     });
   });
 
