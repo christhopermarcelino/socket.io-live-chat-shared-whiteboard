@@ -14,6 +14,8 @@ const chatRoom = document.getElementById('chat-room');
 const messageForm = document.getElementById('message-form');
 const message = document.getElementById('message');
 
+const identityBadge = document.getElementById('identity-badge');
+
 checkBoxInput &&
   checkBoxInput.forEach((checkBox) => {
     checkBox.addEventListener('change', function (e) {
@@ -60,6 +62,7 @@ socket.on('create-room', (data) => {
     mainRoom.classList.add('flex');
     mainRoom.classList.remove('hidden');
     document.title = 'Live chat & whiteboard app';
+    identityBadge.innerHTML = `Hi, ${username.value}! You are in room ${room.value}`;
   }
 });
 
