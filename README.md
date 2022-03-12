@@ -28,3 +28,14 @@ Terdapat beberapa batasan ketika bergabung ke dalam sebuah room, di antaranya:
 1. Username yang sama tidak dapat bergabung dalam satu room
 2. Room yang belum dibuat tidak bisa dimasuki
 3. Room yang private tidak bisa dimasuki
+
+## Masalah
+- Feedback badge pada halaman create room dan join room belum bisa di-toggle untuk hidden
+- Setelah log out, value pada form belum ter-reset
+- Penggambaran pada canvas tidak sesuai posisi cursor
+
+## Pengembangan Lebih Lanjut
+- Penambahan password pada private room
+- Memungkinkan konfigurasi room diganti setelah room dibuat
+- Penambahan warna random pada collaborative canvas
+- Memungkinkan user untuk memilih warna saat menggambar pada canvas
