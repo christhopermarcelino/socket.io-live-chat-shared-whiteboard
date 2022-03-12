@@ -123,8 +123,8 @@ io.on('connection', (socket) => {
             success: true,
             message: 'Joining room successfully',
             data: {
-              isPublic: data.isPublic,
-              isOpen: data.isOpen,
+              isPublic: findRoom.isPublic,
+              isOpen: findRoom.isOpen,
             },
           });
 

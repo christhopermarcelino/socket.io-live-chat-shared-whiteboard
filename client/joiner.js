@@ -6,6 +6,8 @@ const mainRoom = document.getElementById('main-room');
 const joinRoomForm = document.getElementById('join-room-form');
 let username = document.getElementById('username');
 let room = document.getElementById('room');
+let isRoomPublic = null;
+let isRoomOpened = null;
 
 const chatRoom = document.getElementById('chat-room');
 const messageForm = document.getElementById('message-form');
@@ -51,11 +53,15 @@ socket.on('join-room', (data) => {
     document.title = 'Live chat & whiteboard app';
     identityBadge.innerHTML = `Hi, ${username.value}! You are in room ${room.value}`;
   }
+
+  isRoomPublic = data.data.isPublic;
+  isRoomOpened = data.data.isOpen;
+
+  console.log(data, isRoomPublic, isRoomOpened);
 });
 
 socket.on('interact-room', (data) => {
   // data: time, message, room
-  console.log(data);
   logRoom.innerHTML = '';
   data.forEach((d) => {
     const p = document.createElement('p');
@@ -168,7 +174,12 @@ logOutButton.addEventListener('click', (e) => {
 });
 
 socket.on('disconnect', (reason) => {
-  username.value = room.value = message.value = '';
+  username.value =
+    room.value =
+    message.value =
+    isRoomPublic =
+    isRoomRestricted =
+      '';
   mainJoin.classList.remove('hidden');
   mainRoom.classList.remove('flex');
   mainRoom.classList.add('hidden');
@@ -254,7 +265,7 @@ socket.on('disconnect', (reason) => {
   }
 
   function onMouseDown(e) {
-    drawing = true;
+    if (isRoomOpened) drawing = true;
     current.x = e.clientX || e.touches[0].clientX;
     current.y = e.clientY || e.touches[0].clientY;
   }
