@@ -65,7 +65,7 @@ socket.on('interact-room', (data) => {
   logRoom.innerHTML = '';
   data.forEach((d) => {
     const p = document.createElement('p');
-    p.appendChild(document.createTextNode(`${d.time}: ${d.message}`));
+    p.appendChild(document.createTextNode(`${d.time} ${d.message}`));
     logRoom.append(p);
   });
 });
