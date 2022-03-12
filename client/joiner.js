@@ -17,6 +17,11 @@ const identityBadge = document.getElementById('identity-badge');
 let logRoom = document.getElementById('log-room');
 const logOutButton = document.getElementById('logout-button');
 
+// canvas color
+let current = {
+  color: 'black',
+};
+
 joinRoomForm &&
   joinRoomForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -56,6 +61,9 @@ socket.on('join-room', (data) => {
 
   isRoomPublic = data.data.isPublic;
   isRoomOpened = data.data.isOpen;
+
+  if (!isRoomOpened.checked)
+    current.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 });
 
 socket.on('interact-room', (data) => {
@@ -214,9 +222,6 @@ socket.on('disconnect', (reason) => {
   var colors = document.getElementsByClassName('color');
   var context = canvas.getContext('2d');
 
-  var current = {
-    color: 'black',
-  };
   var drawing = false;
 
   canvas.addEventListener('mousedown', onMouseDown, false);
