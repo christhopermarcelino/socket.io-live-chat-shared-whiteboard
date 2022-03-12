@@ -5,7 +5,7 @@ const path = require('path');
 const { Server } = require('socket.io');
 
 const PORT = process.env.PORT || 3001;
-const { userList, messageList, roomList } = require('./context/data');
+let { userList, messageList, roomList, logList } = require('./context/data');
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -28,7 +28,8 @@ app.get('/join-room', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log(`User ${socket.id} connected to server`);
+  let userId = socket.id;
+  console.log(`User ${userId} connected to server`);
 
   // socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
   socket.on('drawing', (data, room) => socket.to(room).emit('drawing', data));
@@ -68,6 +69,17 @@ io.on('connection', (socket) => {
         success: true,
         message: 'Room created successfully',
       });
+
+      const logData = {
+        time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+        message: `${data.username} joined the room`,
+        room: data.room,
+      };
+
+      logList.unshift(logData);
+
+      const logRoom = logList.filter((l) => l.room === data.room);
+      io.in(data.room).emit('interact-room', logRoom);
     } catch (err) {
       socket.emit('create-room', {
         success: false,
@@ -95,7 +107,7 @@ io.on('connection', (socket) => {
           });
         } else {
           const userData = {
-            id: data.id,
+            id: socket.id,
             username: data.username,
             room: data.room,
             isAdmin: false,
@@ -115,6 +127,17 @@ io.on('connection', (socket) => {
               isOpen: data.isOpen,
             },
           });
+
+          const logData = {
+            time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+            message: `${data.username} joined the room`,
+            room: data.room,
+          };
+
+          logList.unshift(logData);
+
+          const logRoom = logList.filter((l) => l.room === data.room);
+          io.in(data.room).emit('interact-room', logRoom);
         }
       } else {
         socket.emit('join-room', {
@@ -141,9 +164,21 @@ io.on('connection', (socket) => {
     });
   });
 
-  io.on('disconnect', (reason) =>
-    console.log(`${reason}: User ${socket.id} disconnected from server`)
-  );
+  socket.on('disconnect', (reason) => {
+    const user = userList.find((u) => u.id === userId);
+    userList = userList.filter((u) => u.id !== userId);
+    console.log(`${reason}: User ${socket.id} disconnected from server`);
+    const logData = {
+      time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+      message: `${user.username} exit the room`,
+      room: user.room,
+    };
+
+    logList.unshift(logData);
+
+    const logRoom = logList.filter((l) => l.room === user.room);
+    io.in(user.room).emit('interact-room', logRoom);
+  });
 });
 
 httpServer.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

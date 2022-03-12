@@ -15,6 +15,7 @@ const messageForm = document.getElementById('message-form');
 const message = document.getElementById('message');
 
 const identityBadge = document.getElementById('identity-badge');
+const logRoom = document.getElementById('log-room');
 
 checkBoxInput &&
   checkBoxInput.forEach((checkBox) => {
@@ -64,6 +65,16 @@ socket.on('create-room', (data) => {
     document.title = 'Live chat & whiteboard app';
     identityBadge.innerHTML = `Hi, ${username.value}! You are in room ${room.value}`;
   }
+});
+
+socket.on('interact-room', (data) => {
+  // data: time, message, room
+  logRoom.innerHTML = '';
+  data.forEach((d) => {
+    const p = document.createElement('p');
+    p.appendChild(document.createTextNode(`${d.time}: ${d.message}`));
+    logRoom.append(p);
+  });
 });
 
 messageForm &&
