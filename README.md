@@ -8,7 +8,9 @@ Backend   : Express JS
 ```
 git clone https://github.com/christhopermarcelino/socket.io-live-chat-shared-whiteboard.git
 cd socket.io-live-chat-shared-whiteboard
-yarn start
+
+npm run npmStart // jika anda menggunakan npm
+yarn run yarnStart // jika anda menggunakan yarn
 ```
 Aplikasi dapat diakses di `http://localhost:3001/`
 
