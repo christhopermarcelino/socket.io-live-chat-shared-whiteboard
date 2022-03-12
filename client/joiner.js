@@ -56,8 +56,6 @@ socket.on('join-room', (data) => {
 
   isRoomPublic = data.data.isPublic;
   isRoomOpened = data.data.isOpen;
-
-  console.log(data, isRoomPublic, isRoomOpened);
 });
 
 socket.on('interact-room', (data) => {
