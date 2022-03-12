@@ -64,6 +64,9 @@ socket.on('create-room', (data) => {
     mainRoom.classList.remove('hidden');
     document.title = 'Live chat & whiteboard app';
     identityBadge.innerHTML = `Hi, ${username.value}! You are in room ${room.value}`;
+
+    if (!isOpen.checked)
+      document.getElementById('colors').classList.add('hidden');
   }
 });
 
@@ -316,7 +319,7 @@ socket.on('disconnect', (reason) => {
   }
 
   function onColorUpdate(e) {
-    current.color = e.target.className.split(' ')[1];
+    current.color = e.target.id;
   }
 
   // limit the number of events per second

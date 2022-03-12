@@ -118,7 +118,7 @@ io.on('connection', (socket) => {
 
           const activeUser = userList.filter((u) => u.room === data.room);
           io.in(data.room).emit('update-users', activeUser);
-          console.log(findRoom);
+
           socket.emit('join-room', {
             success: true,
             message: 'Joining room successfully',
