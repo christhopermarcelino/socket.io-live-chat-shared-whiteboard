@@ -78,43 +78,54 @@ io.on('connection', (socket) => {
 
   socket.on('join-room', (data) => {
     // data -> username, room
-    const findRoom = roomList.find((r) => r.room === data.room);
-    if (findRoom) {
-      const isUserAlreadyJoined = userList.find(
-        (u) => u.room === data.room && u.username === data.username
-      );
-      if (isUserAlreadyJoined) {
+    try {
+      const findRoom = roomList.find((r) => r.room === data.room);
+      if (findRoom) {
+        // check if room is accessible
+        if (!findRoom.isPublic) throw new Error('Room is not accessible');
+
+        // check if username already exists
+        const isUserAlreadyJoined = userList.find(
+          (u) => u.room === data.room && u.username === data.username
+        );
+        if (isUserAlreadyJoined) {
+          socket.emit('join-room', {
+            success: false,
+            message: `User named ${data.username} has already joined the room`,
+          });
+        } else {
+          const userData = {
+            id: data.id,
+            username: data.username,
+            room: data.room,
+            isAdmin: false,
+          };
+          userList.push(userData);
+
+          socket.join(data.room);
+
+          const activeUser = userList.filter((u) => u.room === data.room);
+          io.in(data.room).emit('update-users', activeUser);
+
+          socket.emit('join-room', {
+            success: true,
+            message: 'Joining room successfully',
+            data: {
+              isPublic: data.isPublic,
+              isOpen: data.isOpen,
+            },
+          });
+        }
+      } else {
         socket.emit('join-room', {
           success: false,
-          message: `User named ${data.username} has already joined the room`,
-        });
-      } else {
-        const userData = {
-          id: data.id,
-          username: data.username,
-          room: data.room,
-          isAdmin: false,
-        };
-        userList.push(userData);
-
-        socket.join(data.room);
-
-        const activeUser = userList.filter((u) => u.room === data.room);
-        io.in(data.room).emit('update-users', activeUser);
-
-        socket.emit('join-room', {
-          success: true,
-          message: 'Joining room successfully',
-          data: {
-            isPublic: data.isPublic,
-            isOpen: data.isOpen,
-          },
+          message: 'Room does not exist',
         });
       }
-    } else {
+    } catch (err) {
       socket.emit('join-room', {
         success: false,
-        message: 'Room does not exist',
+        message: err.message || 'Error occured',
       });
     }
   });
