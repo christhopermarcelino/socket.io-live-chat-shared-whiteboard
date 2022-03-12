@@ -15,7 +15,7 @@
         id="create-room-form"
         class="flex flex-col items-center justify-center min-h-screen space-y-10"
       >
-        <div>
+        <div class="flex flex-col items-center">
           <label for="isPublic" class="flex items-center cursor-pointer">
             <div class="mr-3 font-medium text-gray-200">Public</div>
             <div class="relative">
@@ -31,8 +31,12 @@
             </div>
             <div class="ml-3 font-medium text-gray-200">Private</div>
           </label>
+          <p class="mt-2 text-sm text-white">
+            Public room is accessible for everyone and vice versa. Private only
+            for room creator.
+          </p>
         </div>
-        <div>
+        <div class="flex flex-col items-center">
           <label for="isOpen" class="flex items-center cursor-pointer">
             <div class="mr-3 font-medium text-gray-200">Opened</div>
             <div class="relative">
@@ -48,6 +52,10 @@
             </div>
             <div class="ml-3 font-medium text-gray-200">Restricted</div>
           </label>
+          <p class="mt-2 text-sm text-white">
+            In opened room, everyone can draw on the whiteboard. In restricted
+            room, only room creator can
+          </p>
         </div>
         <input
           id="room"
