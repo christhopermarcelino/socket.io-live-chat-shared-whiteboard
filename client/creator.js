@@ -206,6 +206,8 @@ socket.on('disconnect', (reason) => {
   Array.from(createRoomForm.getElementsByTagName('span')).forEach((tag) =>
     tag.remove()
   );
+
+  location.reload();
 });
 
 ('use strict');

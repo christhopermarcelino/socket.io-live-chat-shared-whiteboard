@@ -190,6 +190,8 @@ socket.on('disconnect', (reason) => {
   Array.from(joinRoomForm.getElementsByTagName('span')).forEach((tag) =>
     tag.remove()
   );
+
+  location.reload();
 });
 
 ('use strict');
