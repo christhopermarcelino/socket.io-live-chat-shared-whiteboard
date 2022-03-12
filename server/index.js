@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
       // check if username already exists
       // current state: not allow same username in different room
       const isUsernameAlreadyExists = userList.find(
-        (u) => u.username === data.username
+        (u) => u.username === data.username && u.room === data.room
       );
       if (isUsernameAlreadyExists) throw new Error('Username already exists');
 
