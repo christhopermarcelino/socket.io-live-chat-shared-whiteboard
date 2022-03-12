@@ -43,6 +43,7 @@ socket.on('join-room', (data) => {
 
   if (data.success) {
     mainJoin.classList.add('hidden');
+    mainRoom.classList.add('flex');
     mainRoom.classList.remove('hidden');
     document.title = 'Live chat & whiteboard app';
   }
