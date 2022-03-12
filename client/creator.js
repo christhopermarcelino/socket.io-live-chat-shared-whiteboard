@@ -200,7 +200,9 @@ socket.on('disconnect', (reason) => {
   logRoom.innerHTML = '';
   chatRoom.innerHTML = '';
 
-  createRoomForm.getElementsByTagName('span').forEach((tag) => tag.remove());
+  Array.from(createRoomForm.getElementsByTagName('span')).forEach((tag) =>
+    tag.remove()
+  );
 });
 
 ('use strict');

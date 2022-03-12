@@ -189,7 +189,9 @@ socket.on('disconnect', (reason) => {
   logRoom.innerHTML = '';
   chatRoom.innerHTML = '';
 
-  joinRoomForm.getElementsByTagName('span').forEach((tag) => tag.remove());
+  Array.from(joinRoomForm.getElementsByTagName('span')).forEach((tag) =>
+    tag.remove()
+  );
 });
 
 ('use strict');
