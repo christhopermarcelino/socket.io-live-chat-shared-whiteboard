@@ -30,6 +30,9 @@ app.get('/join-room', (req, res) => {
 io.on('connection', (socket) => {
   console.log(`User ${socket.id} connected to server`);
 
+  // socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+  socket.on('drawing', (data, room) => socket.to(room).emit('drawing', data));
+
   socket.on('create-room', (data) => {
     // data: {id, username, room, isPublic, isOpen}
     try {
@@ -119,6 +122,7 @@ io.on('connection', (socket) => {
   socket.on('send-message', (data) => {
     // data = {message, author, time, room}
     messageList.push(data);
+
     io.in(data.room).emit('send-message', {
       success: true,
       message: 'Chat message sent successfully',
