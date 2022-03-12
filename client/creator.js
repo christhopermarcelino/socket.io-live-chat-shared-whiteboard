@@ -90,6 +90,7 @@ messageForm &&
     };
 
     socket.emit('send-message', messageData);
+    message.value = '';
   });
 
 socket.on('send-message', (data) => {
