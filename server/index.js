@@ -157,10 +157,12 @@ io.on('connection', (socket) => {
     // data = {message, author, time, room}
     messageList.push(data);
 
+    messageListInRoom = messageList.filter((m) => m.room === data.room);
+
     io.in(data.room).emit('send-message', {
       success: true,
       message: 'Chat message sent successfully',
-      messageList: messageList,
+      messageList: messageListInRoom,
     });
   });
 
