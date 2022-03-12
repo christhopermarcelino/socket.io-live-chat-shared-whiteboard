@@ -29,10 +29,15 @@ Terdapat beberapa batasan ketika bergabung ke dalam sebuah room, di antaranya:
 2. Room yang belum dibuat tidak bisa dimasuki
 3. Room yang private tidak bisa dimasuki
 
+## Kekurangan
+- Program masih belum modular
+- Struktur program masih berantakan
+
 ## Masalah
 - Feedback badge pada halaman create room dan join room belum bisa di-toggle untuk hidden
 - Setelah log out, value pada form belum ter-reset
 - Penggambaran pada canvas tidak sesuai posisi cursor
+- Halaman masih belum responsif
 
 ## Pengembangan Lebih Lanjut
 - Penambahan password pada private room
