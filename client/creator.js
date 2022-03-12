@@ -58,6 +58,7 @@ socket.on('create-room', (data) => {
   if (data.success) {
     mainCreate.classList.add('hidden');
     mainRoom.classList.remove('hidden');
+    document.title = 'Live chat & whiteboard app';
   }
 });
 
