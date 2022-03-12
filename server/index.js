@@ -170,6 +170,9 @@ io.on('connection', (socket) => {
     const user = userList.find((u) => u.id === userId);
     userList = userList.filter((u) => u.id !== userId);
     console.log(`${reason}: User ${socket.id} disconnected from server`);
+
+    if (!user) return;
+
     const logData = {
       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
       message: `${user.username} exit the room`,
