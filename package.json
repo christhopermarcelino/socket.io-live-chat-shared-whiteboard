@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "yarn --cwd ./client && yarn --cwd ./server && node ./server/index.js",
+    "npmStart": "cd server && npm i && cd ../client && npm i && cd .. && node ./server/index.js",
+    "yarnStart": "yarn --cwd ./client && yarn --cwd ./server && node ./server/index.js",
     "devStart": "node ./server/index.js && yarn tailwindcss -i ./client/style/input.css -o ./style/output.css --watch"
   }
 }
