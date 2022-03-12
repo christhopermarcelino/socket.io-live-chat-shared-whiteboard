@@ -4,18 +4,19 @@ const mainCreate = document.getElementById('main-create');
 const mainRoom = document.getElementById('main-room');
 
 const createRoomForm = document.getElementById('create-room-form');
-const username = document.getElementById('username');
-const room = document.getElementById('room');
-const isPublic = document.getElementById('isPublic');
-const isOpen = document.getElementById('isOpen');
+let username = document.getElementById('username');
+let room = document.getElementById('room');
+let isPublic = document.getElementById('isPublic');
+let isOpen = document.getElementById('isOpen');
 const checkBoxInput = document.querySelectorAll('.checkbox-input');
 
 const chatRoom = document.getElementById('chat-room');
 const messageForm = document.getElementById('message-form');
-const message = document.getElementById('message');
+let message = document.getElementById('message');
 
 const identityBadge = document.getElementById('identity-badge');
-const logRoom = document.getElementById('log-room');
+let logRoom = document.getElementById('log-room');
+const logOutButton = document.getElementById('logout-button');
 
 checkBoxInput &&
   checkBoxInput.forEach((checkBox) => {
@@ -55,8 +56,7 @@ socket.on('create-room', (data) => {
     'bg-red-500'
   );
 
-  !data.success && pResponse.classList.add('bg-red-500');
-  createRoomForm.prepend(pResponse);
+  !data.success && createRoomForm.prepend(pResponse);
 
   if (data.success) {
     mainCreate.classList.add('hidden');
@@ -173,6 +173,34 @@ const appendMessage = (m) => {
 
   return div1;
 };
+
+logOutButton.addEventListener('click', (e) => {
+  if (confirm('Are you sure you want to log out?')) {
+    socket.emit('force-disconnect');
+  }
+});
+
+socket.on('disconnect', (reason) => {
+  username.value = room.value = message.value = '';
+  isPublic.checked = isOpen.checked = false;
+  checkBoxInput.forEach((checkBox) => {
+    checkBox.addEventListener('change', function (e) {
+      e.target.nextElementSibling.nextElementSibling.classList.remove(
+        'translate-x-full'
+      );
+      e.target.checked = false;
+    });
+  });
+  mainCreate.classList.remove('hidden');
+  mainRoom.classList.remove('flex');
+  mainRoom.classList.add('hidden');
+  document.title = 'Create a room';
+  identityBadge.innerHTML = '';
+  logRoom.innerHTML = '';
+  chatRoom.innerHTML = '';
+
+  createRoomForm.getElementsByTagName('span').forEach((tag) => tag.remove());
+});
 
 ('use strict');
 

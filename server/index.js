@@ -164,6 +164,8 @@ io.on('connection', (socket) => {
     });
   });
 
+  socket.on('force-disconnect', () => socket.disconnect());
+
   socket.on('disconnect', (reason) => {
     const user = userList.find((u) => u.id === userId);
     userList = userList.filter((u) => u.id !== userId);

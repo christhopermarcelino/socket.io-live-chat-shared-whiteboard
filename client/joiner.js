@@ -4,15 +4,16 @@ const mainJoin = document.getElementById('main-join');
 const mainRoom = document.getElementById('main-room');
 
 const joinRoomForm = document.getElementById('join-room-form');
-const username = document.getElementById('username');
-const room = document.getElementById('room');
+let username = document.getElementById('username');
+let room = document.getElementById('room');
 
 const chatRoom = document.getElementById('chat-room');
 const messageForm = document.getElementById('message-form');
-const message = document.getElementById('message');
+let message = document.getElementById('message');
 
 const identityBadge = document.getElementById('identity-badge');
-const logRoom = document.getElementById('log-room');
+let logRoom = document.getElementById('log-room');
+const logOutButton = document.getElementById('logout-button');
 
 joinRoomForm &&
   joinRoomForm.addEventListener('submit', (e) => {
@@ -41,8 +42,7 @@ socket.on('join-room', (data) => {
     'bg-red-500'
   );
 
-  !data.success && pResponse.classList.add('bg-red-500');
-  joinRoomForm.prepend(pResponse);
+  !data.success && joinRoomForm.prepend(pResponse);
 
   if (data.success) {
     mainJoin.classList.add('hidden');
@@ -160,6 +160,25 @@ const appendMessage = (m) => {
 
   return div1;
 };
+
+logOutButton.addEventListener('click', (e) => {
+  if (confirm('Are you sure you want to log out?')) {
+    socket.emit('force-disconnect');
+  }
+});
+
+socket.on('disconnect', (reason) => {
+  username.value = room.value = message.value = '';
+  mainJoin.classList.remove('hidden');
+  mainRoom.classList.remove('flex');
+  mainRoom.classList.add('hidden');
+  document.title = 'Join a room';
+  identityBadge.innerHTML = '';
+  logRoom.innerHTML = '';
+  chatRoom.innerHTML = '';
+
+  joinRoomForm.getElementsByTagName('span').forEach((tag) => tag.remove());
+});
 
 ('use strict');
 
