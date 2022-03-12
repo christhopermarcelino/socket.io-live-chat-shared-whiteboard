@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "yarn tailwindcss -i ./style/input.css -o ./style/output.css --watch"
+  },
   "devDependencies": {
     "tailwindcss": "^3.0.23"
   }
