@@ -13,37 +13,37 @@
     <main class="min-h-screen bg-gray-800" id="main-join">
       <form
         id="join-room-form"
-        class="flex flex-col justify-center items-center space-y-10 min-h-screen"
+        class="flex flex-col items-center justify-center min-h-screen space-y-10"
       >
         <input
           id="room"
           type="text"
           placeholder="Enter room code..."
-          class="px-6 py-4 rounded-md font-semibold text-2xl"
+          class="px-6 py-4 text-2xl font-semibold rounded-md"
         />
         <input
           id="username"
           type="text"
           placeholder="Enter username..."
-          class="px-6 py-4 rounded-md font-semibold text-2xl"
+          class="px-6 py-4 text-2xl font-semibold rounded-md"
         />
         <button
           type="submit"
-          class="hover:bg-gray-400 px-4 font-semibold bg-gray-200 focus:bg-gray-300 rounded-md text-xl py-3"
+          class="px-4 py-3 text-xl font-semibold bg-gray-200 rounded-md hover:bg-gray-400 focus:bg-gray-300"
         >
           Join room
         </button>
       </form>
     </main>
 
-    <main class="min-h-screen flex flex-col bg-gray-800" id="main-room">
-      <div class="flex justify-between space-x-10 px-16 py-6">
+    <main class="flex flex-col min-h-screen bg-gray-800" id="main-room">
+      <div class="flex justify-between px-16 py-6 space-x-10">
         <h1 class="font-semibold text-white">Live chat & whiteboard app</h1>
         <div>
-          <button class="px-6 py-3 rounded-md bg-gray-300 font-medium">
+          <button class="px-6 py-3 font-medium bg-gray-300 rounded-md">
             Join another room
           </button>
-          <button class="px-6 py-3 rounded-md bg-gray-300 font-medium">
+          <button class="px-6 py-3 font-medium bg-gray-300 rounded-md">
             Log out
           </button>
         </div>
@@ -58,42 +58,19 @@
         <!-- right side -->
         <div class="flex-[1_1_0%] p-6 space-y-10">
           <!-- activities -->
-          <div class="bg-white rounded-lg overflow-hidden">
-            <div class="bg-indigo-600 px-4 py-2">
-              <h4 class="text-center text-white font-semibold">Activities</h4>
+          <div class="overflow-hidden bg-white rounded-lg">
+            <div class="px-4 py-2 bg-indigo-600">
+              <h4 class="font-semibold text-center text-white">Activities</h4>
             </div>
             <div class="h-64"></div>
           </div>
           <!-- chat room -->
-          <div class="bg-white rounded-lg overflow-hidden">
-            <div class="bg-indigo-600 px-4 py-2">
-              <h4 class="text-center text-white font-semibold">Chat room</h4>
+          <div class="overflow-hidden bg-white rounded-lg">
+            <div class="px-4 py-2 bg-indigo-600">
+              <h4 class="font-semibold text-center text-white">Chat room</h4>
             </div>
-            <div class="h-96 py-2 px-2 space-y-1" id="chat-room">
-              <!-- left chat -->
-              <div>
-                <span class="text-sm font-semibold">Marcel</span>
-                <div class="flex items-end space-x-2">
-                  <div
-                    class="bg-gray-400 px-3 py-1 rounded-tr-xl rounded-br-xl rounded-bl-xl text-white text-md font-normal max-w-[60%]"
-                  >
-                    <span>Lorem ipsum </span>
-                  </div>
-                  <span class="text-sm font-semibold">19:47</span>
-                </div>
-              </div>
-              <!-- right chat -->
-              <div class="flex flex-col items-end">
-                <span class="text-sm font-semibold">Marcel</span>
-                <div class="flex items-end space-x-2 justify-end w-full">
-                  <span class="text-sm font-semibold">19:47</span>
-                  <div
-                    class="bg-green-400 px-3 py-1 rounded-tl-xl rounded-br-xl rounded-bl-xl text-white text-md font-normal max-w-[60%]"
-                  >
-                    <span>Lorem ipsum</span>
-                  </div>
-                </div>
-              </div>
+            <div class="px-2 py-2 space-y-1 h-96" id="chat-room">
+              
             </div>
             <div>
               <form class="flex" id="message-form">
